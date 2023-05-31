@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load bootstrap5%}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{%block title%}Checkout{%endblock title%}
+
+{%block content%}
+
+<div class="tw-h-screen dark:tw-bg-gray-900">
+  <div class="dark:tw-bg-gray-900 tw-flex tw-justify-between lg:tw-px-14 tw-py-4 tw-px-4">
+    <img class="tw-w-16 tw-h-16 tw-rounded-full" src="{%static 'hospitality.jpg'%}" alt="Logo Image">
+    <p id="sun"><i class="fa-solid fa-sun tw-text-white"></i></p>
+    <p id="moon"><i class="fa-solid fa-moon"></i></p>
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+        <a class="tw-text-white tw-no-underline"href="{%url 'logout'%}">Logout</a>
+    </button>
+    {% endbuttons %}
+</div>
+  <section class="tw-flex tw-justify-center tw-mt-20">
+    <button id="start-payment-button" onclick="makePayment()" class="btn btn-primary">
+        Pay Now
+    </button>   
+    {{redirect_to_login_immediately}}
+</section>
+</div>
+<div class="dark:tw-bg-gray-900">
+  {%include 'partials/footnote.html'%}
+</div>
+
+
+<script src="https://checkout.flutterwave.com/v3.js"></script>
+<script>
+    let user_email = "{{user.email}}"
+    let user_number = "{{user.phone_number}}"
+    let user_name = "{{user.first_name}}"
+
+    function makePayment() {
+      FlutterwaveCheckout({
+        public_key: "FLWPUBK_TEST-5fccd98b3f2684f0ace01937161508e7-X",
+        tx_ref: "titanic-48981487343MDI0NzMx",
+        amount: 100000,
+        currency: "NGN",
+        payment_options: "card, banktransfer, ussd",
+        redirect_url: "http://127.0.0.1:8000/success/",
+        meta: {
+          consumer_id: 23,
+          consumer_mac: "92a3-912ba-1192a",
+        },
+        customer: {
+          email: user_email,
+          phone_number: user_number,
+          name: user_name,
+        },
+        customizations: {
+          title: "The Tech Wave",
+          description: "Payment for techforjonah",
+          logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+        },
+      });
+      FlutterwaveCheckout();
+    }
+</script>
+{%endblock%}

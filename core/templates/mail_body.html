@@ -1,0 +1,8 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Verify email{%endblock title%}
+{%block content%}
+<h1>You are almost there, {{ user.first_name }}.</h1><br>
+<h2>Please click <a href="{{ link }}">here</a> to confirm your account</h2>
+<h2>The link expires at {{ expiry|time:"TIME_FORMAT" }}</h2>
+{%endblock%}

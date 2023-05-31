@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+    <div class="tw-flex tw-justify-center">
+        <a href="{%url 'register'%}"><i class="lg:tw-text-2xl tw-mt-12 tw-px-4 tw-py-3 tw-rounded-lg fa-solid fa-arrow-left"></i></a>
+    </div>
+    <p class="tw-text-center tw-pt-64 tw-px-4 tw-h-screen">An email has being sent to you. Please follow the instructions to verify your email.</p>
+    {%include 'partials/footnote.html'%}
+{%endblock%}

@@ -1,0 +1,77 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load bootstrap5%}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load crispy_forms_tags %}
+{%block title%}Home{%endblock title%}
+
+{%block content%}
+<!--<div class="dark:tw-bg-gray-900">
+    {%include 'partials/navbar.html'%}
+   
+    <div class="dark:tw-bg-gray-900 tw-mx-auto tw-pt-20 tw-flex tw-justify-center tw-container tw-max-w-5xl tw-items-center tw-h-screen">
+        <div class="tw-flex tw-justify-between lg:tw-space-x-20">
+            <div class="tw-hidden lg:tw-block">
+                <img src="{%static 'image.png'%}" alt="image">
+            </div>
+            <div class="tw-bg-gray-100 dark:tw-bg-gray-800 tw-rounded-md tw-p-6 tw-my-auto">
+                <p class="tw-text-blue-500 tw-text-center tw-font-semibold">SIGN UP</p>
+                <p class="dark:tw-text-gray-300">Already have an account? <a class="tw-no-underline" href="/">Login</a></p>
+                {%for message in messages%}
+                <p class="tw-text-red-500">{{message}}</p>
+                {%endfor%}
+                <form action="" method="POST">{%csrf_token%} 
+                    <p><input type="email" name="email" placeholder="Email" class="tw-rounded-md tw-px-2"></p>
+                    <p><input type="password" name="password" placeholder="Password" class="tw-rounded-md tw-px-2"></p>
+                    <p><input type="password" name="password2" placeholder="Confirm Password" class="tw-rounded-md tw-px-2"></p>
+                    <p class=""><input type="submit" value="Submit" class="tw-bg-blue-500 tw-rounded-md tw-text-white tw-px-2 tw-py-2 tw-border-2 tw-border-transparent"></p>    
+                </form>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    {%include 'partials/footnote.html'%}
+</div>-->
+
+<div class="dark:tw-bg-gray-900">
+    {%include 'partials/navbar.html'%}
+   
+    <div class="dark:tw-bg-gray-900 tw-mx-auto tw-pt-20 tw-flex tw-justify-center tw-container tw-max-w-5xl lg:tw-items-center lg:tw-h-screen tw-mb-64 tw-mt-32">
+        <div class="tw-flex tw-justify-between lg:tw-space-x-14 lg:tw-mx-4">
+            <div class="tw-hidden lg:tw-block">
+                <img src="{%static 'image.png'%}" alt="image">
+            </div>
+            <div class="tw-flex tw-justify-center tw-px-10 lg:tw-px-0">
+                <div class="tw-bg-gray-100 dark:tw-bg-gray-800 tw-rounded-md tw-p-6 lg:tw-w-full xl:tw-w-96">
+                    <p class="tw-text-blue-500 tw-text-center tw-font-semibold">SIGN UP</p>
+                    <p class="dark:tw-text-gray-300 tw-text-center">Already have an account? <a class="tw-no-underline" href="/">Login</a></p>
+                    <!--{% if form.errors %}
+                        <div class="alert alert-danger">
+                        <strong>Error:</strong>
+                    {% for field in form %}
+                            {% for error in field.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        {% endfor %}
+                        </div>
+                    {% endif %} -->
+                    <form action="" method="POST">{%csrf_token%} 
+                        {% bootstrap_form form %}            
+                        {% buttons %}
+                            <button type="submit" class="btn btn-primary tw-w-full">
+                            Submit
+                            </button>
+                        {% endbuttons %}    
+                    </form>
+                </div>    
+            </div>
+            
+        </div>    
+    </div>
+    {%include 'partials/footnote.html'%}
+</div>
+
+{%endblock%}

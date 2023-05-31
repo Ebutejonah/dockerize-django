@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Email confirmation{%endblock title%}
+
+{%block content%}
+    {% if success %}
+        <p>Dear {{ user.first_name }}, your account is confirmed!</p>
+        <p>You can go ahead and <a href="http://127.0.0.1:8000">Login</a></p>
+    {% else %}
+        <p>Error, invalid token!</p>   
+        <p>Please <a href="http://127.0.0.1:8000/register">Sign Up</a> Up Again </p>
+    {% endif %}
+{%endblock%}
